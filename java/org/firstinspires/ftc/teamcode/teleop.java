@@ -64,12 +64,19 @@ public class KoalaTestTeleop extends LinearOpMode {
             telemetry.addData("Status", "Running");
             telemetry.update();
             
+            // Calculate the power needed for each motor
+            float moving_lf_power = - gamepad1.left_stick.y + gamepad1.right_bumper - gamepad1.left_bumper;
+            float moving_lr_power = - gamepad.left_stick.y + gamepad1.right_bumper - gamepad1.left_bumper;
+            float moving_rf_power = + gamepad1.left_stick.y + gamepad1.right_bumper - gamepad1.left_bumper;
+            float moving_rr_power = + gamepad.left_stick.y + gamepad1.right_bumper - gamepad1.left_bumper;
+            float panning_power = -gamepad1.left_stick_x;
+            
             // Move the robot using the left stick 
-            moving_lf.setPower(-gamepad1.left_stick_y);
-            moving_lr.setPower(-gamepad1.left_stick_y);
-            moving_rf.setPower(gamepad1.left_stick_y);
-            moving_rr.setPower(gamepad1.left_stick_y);
-            panning.setPower(-gamepad1.left_stick_x);
+            moving_lf.setPower(moving_lf_power);
+            moving_lf.setPower(moving_lr_power);
+            moving_lf.setPower(moving_rf_power);
+            moving_lf.setPower(moving_rr_power);
+            moving_lf.setPower(panning_power);
             
             /*
             if (gamepad1.a) {
