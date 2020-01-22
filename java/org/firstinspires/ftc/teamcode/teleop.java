@@ -53,6 +53,11 @@ public class KoalaTestTeleop extends LinearOpMode {
         moving_rr = hardwareMap.get(DcMotor.class, "moving_rr");
         panning = hardwareMap.get(DcMotor.class, "panning");
 
+        moving_lf.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        moving_lr.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        moving_rf.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        moving_rr.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         
@@ -70,6 +75,7 @@ public class KoalaTestTeleop extends LinearOpMode {
             moving_rf.setPower(gamepad1.left_stick_y);
             moving_rr.setPower(gamepad1.left_stick_y);
             panning.setPower(-gamepad1.left_stick_x);
+            System.out.println(moving_lf.getCurrentPosition());
             
             /*
             if (gamepad1.a) {
